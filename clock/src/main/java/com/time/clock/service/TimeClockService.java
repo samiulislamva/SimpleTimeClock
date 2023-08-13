@@ -10,6 +10,6 @@ public interface TimeClockService {
 
 	EmployeeTimeClockLog startWorkShift(TimeClockRequest timeClockRequest) throws TimeClockException;
 
-	List<EmployeeTimeClockLog> getAllEmployeeClockLog(Long employeeId);
+	List<EmployeeTimeClockLog> getAllEmployeeClockLog(Long employeeId) throws TimeClockException;
 
 }
