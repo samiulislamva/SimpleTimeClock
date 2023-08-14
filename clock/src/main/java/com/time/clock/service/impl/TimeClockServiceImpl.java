@@ -97,11 +97,6 @@ public class TimeClockServiceImpl implements TimeClockService {
 				throw new TimeClockException(HttpStatus.BAD_REQUEST,
 						SHIFT_CAN_NOT_BE_END + timeClockRequest.getUserId());
 			}
-			
-			// validate if shift has ended then throw error
-			if(Objects.nonNull(timeClockLog.getShiftEndTime())) {
-				throw new TimeClockException(HttpStatus.NOT_FOUND, NO_ACTIVE_SHIFT + timeClockRequest.getUserId());
-			}
 			timeClockLog.setShiftEndTime(date);
 			break;
 		case BREAK_START:
@@ -117,11 +112,6 @@ public class TimeClockServiceImpl implements TimeClockService {
 			if(Objects.nonNull(timeClockLog.getBreakEndTime())) {
 				throw new TimeClockException(HttpStatus.CONFLICT, 
 						BREAK_ALREADY_TAKEN + timeClockRequest.getUserId());
-			}
-
-			// validate if shift has ended then throw error
-			if(Objects.nonNull(timeClockLog.getShiftEndTime())) {
-				throw new TimeClockException(HttpStatus.NOT_FOUND, NO_ACTIVE_SHIFT + timeClockRequest.getUserId());
 			}
 			timeClockLog.setBreakStartTime(date);
 			break;
@@ -147,11 +137,6 @@ public class TimeClockServiceImpl implements TimeClockService {
 			if(Objects.nonNull(timeClockLog.getLunchEndTime())) {
 				throw new TimeClockException(HttpStatus.CONFLICT, 
 						LUNCH_ALREADY_TAKEN + timeClockRequest.getUserId());
-			}
-
-			// validate if shift has ended then throw error
-			if(Objects.nonNull(timeClockLog.getShiftEndTime())) {
-				throw new TimeClockException(HttpStatus.NOT_FOUND, NO_ACTIVE_SHIFT + timeClockRequest.getUserId());
 			}
 			timeClockLog.setLunchStartTime(date);
 			break;
